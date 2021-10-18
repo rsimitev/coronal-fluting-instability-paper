@@ -1,7 +1,7 @@
 ### TODO
 
 Decide on journal - MNRAS?
-Steal intro from thesis
+x Steal intro from thesis
 Steal conclusion from thesis
 x Decide if any more simulations need run
 Add something about the form of the tube mirroring that of Hood 2009
