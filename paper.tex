@@ -85,23 +85,22 @@ UK \\ \href{https://orcid.org/0000-0002-2207-5789}{orcid.org/0000-0002-2207-5789
 \graphicspath{{images/kink_instability_straight/}}
 
 \begin{abstract}
-Magnetic flux tubes such as those in the solar corona are subject to a
-number of instabilities. Important among them is the kink instability
-which plays a central part in the nanoflare theory of coronal heating,
-and for this reason in numerical simulations it is usually induced by
-tightly-controlled perturbations and studied in isolation. In
-contrast, we find that when disturbances are introduced in our
-magnetohydrodynamic flux tube simulations by dynamic twisting of the
-flow at the boundaries fluting modes of instability are readily
-excited. We also find that the flute instability, which has been
-theorised but rarely observed in the coronal context,  is strongly
-enhanced when plasma viscosity is assumed anisotropic.
-We proceed to investigate the co-existence and competition between
-flute and kink instabilities for a range of values of the resistivity
-and of the parameters of the anisotropic and isotropic models of viscosity.
-We conclude that while the flute instability cannot prevent the kink
-from ultimately dominating, it can significantly delay its development
-especially at strong viscous anisotropy induced by intense magnetic fields.
+Magnetic flux tubes such as those in the solar corona are subject to a number
+of instabilities. Important among them is the kink instability which plays
+a central part in the nanoflare theory of coronal heating, and for this reason
+in numerical simulations it is usually induced by tightly-controlled
+perturbations and studied in isolation. In contrast, we find that when
+disturbances are introduced in our magnetohydrodynamic flux tube simulations by
+dynamic twisting of the flow at the boundaries fluting modes of instability are
+readily excited. We also find that the flute instability, which has been
+theorised but rarely observed in the coronal context,  is strongly enhanced
+when plasma viscosity is assumed anisotropic. We proceed to investigate the
+co-existence and competition between flute and kink instabilities for a range
+of values of the resistivity and of the parameters of the anisotropic and
+isotropic models of viscosity. We conclude that while the flute instability
+cannot prevent the kink from ultimately dominating, it can significantly delay
+its development especially at strong viscous anisotropy induced by intense
+magnetic fields.
 \end{abstract}
 
 \begin{keywords}
@@ -110,124 +109,128 @@ Sun: corona -- Sun: magnetic fields -- instabilities -- plasmas -- MHD
 
 \section{Introduction}
 
-The helical kink instability is a form of ideal magnetohydrodynamic
-(MHD) instability which occurs in highly twisted magnetic flux tubes
-such as those making up much of the solar
-corona~\citep{realeCoronalLoopsObservations2014} and has been well
-studied in the coronal
-context~\citep{hoodKinkInstabilitySolar1979,hoodCoronalHeatingMagnetic2009,browningSolarCoronalHeating2003b,barefordShockHeatingNumerical2015,quinnEffectAnisotropicViscosity2020}. Given
-its energetic nonlinear development, it is considered a potential
+The helical kink instability is a form of ideal magnetohydrodynamic (MHD)
+instability which occurs in highly twisted magnetic flux tubes such as those
+making up much of the solar corona~\citep{realeCoronalLoopsObservations2014}
+and has been well studied in the coronal
+context~\citep{hoodKinkInstabilitySolar1979,hoodCoronalHeatingMagnetic2009,browningSolarCoronalHeating2003b,barefordShockHeatingNumerical2015,quinnEffectAnisotropicViscosity2020}.
+Given its energetic nonlinear development, it is considered a potential
 mechanism for heating the solar corona through the theory of
 nanoflares~\citep{klimchukSolvingCoronalHeating2006,browningMechanismsSolarCoronal1991}
 and a key mechanism in the production of solar
-flares~\citep{hoodKinkInstabilitySolar1979}. Some of our previous work has investigated a twisted magnetic flux tube already linearly
-unstable to the helical kink instability, focussing specifically on
-the effect of anisotropic viscosity on the nonlinear
-dynamics~\citep{quinnEffectAnisotropicViscosity2020}. In~\citet{quinnEffectAnisotropicViscosity2020}
-and most other investigations of the kink instability
-e.g.~\citet{hoodCoronalHeatingMagnetic2009}, a perturbation 
-is applied to an already significantly twisted flux tube. An
-alternative way to excite the instability (and the way employed here)
-is to start with an initially straight field and apply twisting
-motions at the boundaries to form a twisted flux tube which eventually
-becomes unstable. This kind of dynamic excitation of the kink
-instability is useful in that it represents more closely actual evolution of magnetic flux tubes and the associated instabilities in 
-the solar corona. In our simulations, the
-dynamic twisting of the flux tube reveals an additional instability,
-the flute instability, which has been theorised (for example,
-in~\citet{priestMagnetohydrodynamicsSun2013}). While oscillations resembling flute perturbations have been found in simulations of coronal loops~\citep{terradasEffectMagneticTwist2018}, to our knowledge, this is the first time the flute instability has been investigated computationally in a coronal context.
+flares~\citep{hoodKinkInstabilitySolar1979}. Some of our previous work has
+investigated a twisted magnetic flux tube already linearly unstable to the
+helical kink instability, focussing specifically on the effect of anisotropic
+viscosity on the nonlinear
+dynamics~\citep{quinnEffectAnisotropicViscosity2020}.
+In~\citet{quinnEffectAnisotropicViscosity2020} and most other investigations of
+the kink instability e.g.~\citet{hoodCoronalHeatingMagnetic2009},
+a perturbation is applied to an already significantly twisted flux tube. An
+alternative way to excite the instability (and the way employed here) is to
+start with an initially straight field and apply twisting motions at the
+boundaries to form a twisted flux tube which eventually becomes unstable. This
+kind of dynamic excitation of the kink instability is useful in that it
+represents more closely actual evolution of magnetic flux tubes and the
+associated instabilities in the solar corona. In our simulations, the dynamic
+twisting of the flux tube reveals an additional instability, the flute
+instability, which has been theorised (for example,
+in~\citet{priestMagnetohydrodynamicsSun2013}). While oscillations resembling
+flute perturbations have been found in simulations of coronal
+loops~\citep{terradasEffectMagneticTwist2018}, to our knowledge, this is the
+first time the flute instability has been investigated computationally in
+a coronal context.
 
-The flute instability arises in magnetised plasmas where
-the plasma pressure gradient is oriented in the same direction as the
-field line curvature, that is the pressure and magnetic tension forces
-compete. This is similar to the competition between pressure and
-gravitational forces which gives rise to the Rayleigh-Taylor
-instability (RTI). In magnetohydrodynamic terminology, the RTI is a typical example of an ideal
-interchange instability, where magnetic field lines are minimally bent
-and are, instead, exchanged during the evolution of the
-instability. The ideal flute instability is another example of an
-ideal interchange instability but confined to a cylindrical geometry,
-the term ``flute instability'' referring to its likeness to a fluted
-column. In a twisted flux tube like a simple, unbraided coronal loop,
-the magnetic curvature is always directed towards the axis so the tube
-may be unstable to fluting when the pressure decreases outwards from a
-high-pressure core. Such a pressure distribution is generated in the
-flux tubes studied here as a result of the driving. The appearance of
-the flute instability is illustrated by, for example, the pressure
-contours in figure~\ref{fig:kink_field_line_plots}, where the
-perturbations follow the pitch of the twisted field. 
+The flute instability arises in magnetised plasmas where the plasma pressure
+gradient is oriented in the same direction as the field line curvature, that is
+the pressure and magnetic tension forces compete. This is similar to the
+competition between pressure and gravitational forces which gives rise to the
+Rayleigh-Taylor instability (RTI). In magnetohydrodynamic terminology, the RTI
+is a typical example of an ideal interchange instability, where magnetic field
+lines are minimally bent and are, instead, exchanged during the evolution of
+the instability. The ideal flute instability is another example of an ideal
+interchange instability but confined to a cylindrical geometry, the term
+``flute instability'' referring to its likeness to a fluted column. In
+a twisted flux tube like a simple, unbraided coronal loop, the magnetic
+curvature is always directed towards the axis so the tube may be unstable to
+fluting when the pressure decreases outwards from a high-pressure core. Such
+a pressure distribution is generated in the flux tubes studied here as a result
+of the driving. The appearance of the flute instability is illustrated by, for
+example, the pressure contours in figure~\ref{fig:kink_field_line_plots}, where
+the perturbations follow the pitch of the twisted field. 
 
-In other solar contexts, interchange instabilities can be found in the
-form of ballooning modes in
-arcades~\citep{hoodBallooningInstabilitiesSolar1986}, as the
-instability which forms tubes of specific size in the
-photosphere~\citep{bunteInterchangeInstabilitySolar1993} and in the
-buoyancy of flux
-tubes~\citep{schuesslerInterchangeInstabilitySmall1984}. However, the
+In other solar contexts, interchange instabilities can be found in the form of
+ballooning modes in arcades~\citep{hoodBallooningInstabilitiesSolar1986}, as
+the instability which forms tubes of specific size in the
+photosphere~\citep{bunteInterchangeInstabilitySolar1993} and in the buoyancy of
+flux tubes~\citep{schuesslerInterchangeInstabilitySmall1984}. However, the
 flute instability specifically is more commonly studied in fusion
-contexts~\citep{mikhailovskiiInstabilitiesConfinedPlasma1998,zhengAdvancedTokamakStability2015,wessonHydromagneticStabilityTokamaks1978}. In
-fusion, the focus is generally on understanding how a particular
-plasma device may be stabilised to the instability in particular
-geometries such as that of the mirror
-machine~\citep{jungwirthTheoryFluteInstability1965} or in toroidal
-geometries such as the
-tokomak~\citep{shafranovFluteInstabilityCurrentcarrying1968}. The
-resistive flute instability (also known as the resistive interchange
-instability) can be excited even when the ideal flute instability is
-stabilised. As a result, this has been given significantly more
-attention~\citet{johnsonResistiveInterchangesNegativeV1967,correa-restrepoResistiveBallooningModes1983}. While
-this body of research is useful and applicable in solar contexts, it
-is mostly limited to the study of the stability and linear development
-of the flute instability, the nonlinear development being of
-secondary importance in the investigation of fusion devices. More
-detailed investigations of its nonlinear development is required to
-understand its importance in the context of coronal dynamics and
-coronal heating. The development of the flute instability and its
-interaction with the simultaneously growing kink instability is the
-main focus of this work and the experiments described here represent an
-initial exploration into the nonlinear flute instability in the
+contexts~\citep{mikhailovskiiInstabilitiesConfinedPlasma1998,zhengAdvancedTokamakStability2015,wessonHydromagneticStabilityTokamaks1978}.
+In fusion, the focus is generally on understanding how a particular plasma
+device may be stabilised to the instability in particular geometries such as
+that of the mirror machine~\citep{jungwirthTheoryFluteInstability1965} or in
+toroidal geometries such as the
+tokomak~\citep{shafranovFluteInstabilityCurrentcarrying1968}. The resistive
+flute instability (also known as the resistive interchange instability) can be
+excited even when the ideal flute instability is stabilised. As a result, this
+has been given significantly more
+attention~\citet{johnsonResistiveInterchangesNegativeV1967,correa-restrepoResistiveBallooningModes1983}.
+While this body of research is useful and applicable in solar contexts, it is
+mostly limited to the study of the stability and linear development of the
+flute instability, the nonlinear development being of secondary importance in
+the investigation of fusion devices. More detailed investigations of its
+nonlinear development is required to understand its importance in the context
+of coronal dynamics and coronal heating. The development of the flute
+instability and its interaction with the simultaneously growing kink
+instability is the main focus of this work and the experiments described here
+represent an initial exploration into the nonlinear flute instability in the
 solar corona.
 
-In addition to our main goal, of particular interest here is
-also the effect of anisotropic plasma viscosity, which in the following is found to
-strongly influence the growth of the flute instability.
-It is well known that viscosity in magnetised plasmas (such as
-those which make up the solar corona) is
-anisotropic and strongly dependent on the strength and direction of
-the local magnetic
+In addition to our main goal, of particular interest here is also the effect of
+anisotropic plasma viscosity, which in the following is found to strongly
+influence the growth of the flute instability. It is well known that viscosity
+in magnetised plasmas (such as those which make up the solar corona) is
+anisotropic and strongly dependent on the strength and direction of the local
+magnetic
 field~\citep{hollwegViscosityChewGoldbergerLowEquations1986,hollwegViscosityMagnetizedPlasma1985,braginskiiTransportProcessesPlasma1965}.
-To take this into account, MacTaggaret et al. developed a phenomenological model of anisotropic viscosity~\citep{mactaggartBraginskiiMagnetohydrodynamicsArbitrary2017} that
-captures the main physics of viscosity in the 
-solar corona as outlined in the analysis of
-\cite{braginskiiTransportProcessesPlasma1965}, namely parallel
-viscosity in regions of strong field  strength and isotropic viscosity
-in regions of very weak or zero field strength. For brevity, we will
-refer to this model of viscosity as ``the switching model''. In~\citet{quinnEffectAnisotropicViscosity2020,quinnKelvinHelmholtzInstabilityCollapse2021} we implemented
-the switching model as a module for the widely-used general MHD code
-Lare3d~\citep{arberStaggeredGridLagrangian2001}, and demonstrated
-significant effects of anisotropic viscosity on the 
-development of the nonlinear MHD kink instability and the
-Kelvin-Helmholtz instability. More generally, the interest in
-anisotropic viscosity stems from the open question of
-which heating mechanism (viscous or Ohmic) is dominant in the solar
-corona~\citep{klimchukSolvingCoronalHeating2006}, an important facet
-of solving the coronal heating problem. Using scaling laws, it has
-been suggested that viscous heating (generated through anisotropic
-viscosity) can dwarf that of Ohmic
+To take this into account, MacTaggaret et al. developed a phenomenological
+model of anisotropic
+viscosity~\citep{mactaggartBraginskiiMagnetohydrodynamicsArbitrary2017} that
+captures the main physics of viscosity in the solar corona as outlined in the
+analysis of \cite{braginskiiTransportProcessesPlasma1965}, namely parallel
+viscosity in regions of strong field  strength and isotropic viscosity in
+regions of very weak or zero field strength. For brevity, we will refer to this
+model of viscosity as ``the switching model''.
+In~\citet{quinnEffectAnisotropicViscosity2020,quinnKelvinHelmholtzInstabilityCollapse2021}
+we implemented the switching model as a module for the widely-used general MHD
+code Lare3d~\citep{arberStaggeredGridLagrangian2001}, and demonstrated
+significant effects of anisotropic viscosity on the development of the
+nonlinear MHD kink instability and the Kelvin-Helmholtz instability. More
+generally, the interest in anisotropic viscosity stems from the open question
+of which heating mechanism (viscous or Ohmic) is dominant in the solar
+corona~\citep{klimchukSolvingCoronalHeating2006}, an important facet of solving
+the coronal heating problem. Using scaling laws, it has been suggested that
+viscous heating (generated through anisotropic viscosity) can dwarf that of
+Ohmic
 heating~\citep{craigAnisotropicViscousDissipation2009a,litvinenkoViscousEnergyDissipation2005}.
-However,
-due to computational and observational limitations, this cannot be
-directly tested, and so the influence of other factors such as small
-scale instabilities and turbulence is relatively
-unknown~\citet{klimchukSolvingCoronalHeating2006}. In addition to
-directly heating the plasma, viscosity plays a part in the damping of
-instabilities and waves~\citep{rudermanSlowSurfaceWave2000}. It is
-this effect we are most interested in here, and it shall be reported that
-the use of anisotropic viscosity permits the growth of the
-flute instability, which is otherwise strongly damped by
-isotropic viscosity. 
+However, due to computational and observational limitations, this cannot be
+directly tested, and so the influence of other factors such as small scale
+instabilities and turbulence is relatively
+unknown~\citet{klimchukSolvingCoronalHeating2006}. In addition to directly
+heating the plasma, viscosity plays a part in the damping of instabilities and
+waves~\citep{rudermanSlowSurfaceWave2000}. It is this effect we are most
+interested in here, and it shall be reported that the use of anisotropic
+viscosity permits the growth of the flute instability, which is otherwise
+strongly damped by isotropic viscosity. 
 
-This paper is organised as follows. Section~\ref{sec-flute-intro} introduces the flute instability and relevant linear analyses, section~\ref{sec-numerical-setup} describes the governing equations, coronal loop model and details of the numerical parameters, section~\ref{sec-results} presents the overall development of the flute instability, before discussing features unique to the two values of resistivity studied, section~\ref{sec-discussion} discusses the limitations of the simulations, with suggestions for future work, and section~\ref{sec-conclusions} presents our conclusions in the wider context of coronal heating.
+This paper is organised as follows. Section~\ref{sec-flute-intro} introduces
+the flute instability and relevant linear analyses,
+section~\ref{sec-numerical-setup} describes the governing equations, coronal
+loop model and details of the numerical parameters, section~\ref{sec-results}
+presents the overall development of the flute instability, before discussing
+features unique to the two values of resistivity studied,
+section~\ref{sec-discussion} discusses the limitations of the simulations, with
+suggestions for future work, and section~\ref{sec-conclusions} presents our
+conclusions in the wider context of coronal heating.
 
 \subsection{The flute instability}
 \label{sec-flute-intro}
@@ -238,52 +241,70 @@ In general, the stability of a cylindrical twisted magnetic flux tube is analyse
 \xi(r, \theta, z) = \xi(r) e^{i(m\theta + kz)},
 \end{equation}
 where $m$ and $k$ are the wavenumbers in the azimuthal and axial directions,
-  $\theta$ and $z$, respectively and $r$ is the radial coordinate in
-  cylindrical polars. 
-The helical kink instability occurs for perturbations where $m=1, k\ne0$ and is the only instability of this form which is a body instability, that is it moves the entire body of the flux tube. Perturbations where $m>1$ are termed flute or interchange instabilities.
+$\theta$ and $z$, respectively and $r$ is the radial coordinate in cylindrical
+polars. The helical kink instability occurs for perturbations where $m=1,
+k\ne0$ and is the only instability of this form which is a body instability,
+that is it moves the entire body of the flux tube. Perturbations where $m>1$
+are termed flute or interchange instabilities.
 
-When the magnetic field is sheared, as in a twisted magnetic flux
-tube, an interchange instability (such as the flute
-instability) is confined to a surface where the peaks and troughs
-follow the shear of the field. That is, the instability is confined to
-the surface where the perturbation wavevector $(0, m/r, k)$ is
-perpendicular to the direction of the field, known as the
-  ``resonance surface''. In an axisymmetric twisted
-flux tube the resonance surface is located at a radius $r$
-given by
+When the magnetic field is sheared, as in a twisted magnetic flux tube, an
+interchange instability (such as the flute instability) is confined to
+a surface where the peaks and troughs follow the shear of the field. That is,
+the instability is confined to the surface where the perturbation wavevector
+$(0, m/r, k)$ is perpendicular to the direction of the field, known as the
+``resonance surface''. In an axisymmetric twisted flux tube the resonance
+surface is located at a radius $r$ given by
 \begin{equation}
   \label{eq:resonant_surface}
 \frac{m}{r} B_{\theta}(r) + kB_z(r) \approx 0.
 \end{equation}
 
-The stability of an infinite cylindrical flux tube to perturbations of
-the form~\eqref{eq:kink_perturbation} is given by the classical
-Suydam's criterion~\citep{suydamStabilityLinearPinch1958}
+The stability of an infinite cylindrical flux tube to perturbations of the
+form~\eqref{eq:kink_perturbation} is given by the classical Suydam's
+criterion~\citep{suydamStabilityLinearPinch1958}
 \begin{equation}
   \label{eq:suydams_criterion}
 \frac{B_z^2 S^2}{4} + 2 r p' > 0,
 \end{equation}
-where $S = r q'/q$ is a measure of the shear, $q = 2\pi r B_z / L
-B_{\theta}$ is the safety factor for a flux tube of length $L$ and a
-prime denotes differentiation with respect to
-$r$~\citep{mikhailovskiiInstabilitiesConfinedPlasma1998}. This applies
-to both flute and kink instabilities although many
-additional effects such as line-tying are not incorporated into the
-corresponding linear analysis. The effect of line-tying on the kink
-instability is investigated
-in~\citet{hoodKinkInstabilitySolar1979}. Where~\eqref{eq:suydams_criterion}
-is not satisfied, the flux tube may be unstable to perturbations of
-the form~\eqref{eq:kink_perturbation}. When $m>1$, the perturbations
-remain local to resonant surfaces given
-by~\eqref{eq:resonant_surface}. 
-When Suydam's criterion is satisfied and the flux tube is linearly stable, it may still be unstable to non-local perturbations, where the shear and pressure are small enough that interchange perturbations do not need to satisfy~\eqref{eq:resonant_surface}. Additionally, the inclusion of resistivity generally reduces the stabilising effect of the shear, permitting growth of a resistive interchange mode, albeit at a slower rate than that of the ideal instability~\citep{mikhailovskiiInstabilitiesConfinedPlasma1998}. It will be found that the ideal linear analysis of~\cite{mikhailovskiiInstabilitiesConfinedPlasma1998} is sufficient for understanding the flute instabilities investigated here since the associated flux tubes adequately fail the criterion~\eqref{eq:suydams_criterion}.
+where $S = r q'/q$ is a measure of the shear, $q = 2\pi r B_z / L B_{\theta}$
+is the safety factor for a flux tube of length $L$ and a prime denotes
+differentiation with respect to
+$r$~\citep{mikhailovskiiInstabilitiesConfinedPlasma1998}. This applies to both
+flute and kink instabilities although many additional effects such as
+line-tying are not incorporated into the corresponding linear analysis. The
+effect of line-tying on the kink instability is investigated
+in~\citet{hoodKinkInstabilitySolar1979}. Where~\eqref{eq:suydams_criterion} is
+not satisfied, the flux tube may be unstable to perturbations of the
+form~\eqref{eq:kink_perturbation}. When $m>1$, the perturbations remain local
+to resonant surfaces given by~\eqref{eq:resonant_surface}. When Suydam's
+criterion is satisfied and the flux tube is linearly stable, it may still be
+unstable to non-local perturbations, where the shear and pressure are small
+enough that interchange perturbations do not need to
+satisfy~\eqref{eq:resonant_surface}. Additionally, the inclusion of resistivity
+generally reduces the stabilising effect of the shear, permitting growth of
+a resistive interchange mode, albeit at a slower rate than that of the ideal
+instability~\citep{mikhailovskiiInstabilitiesConfinedPlasma1998}. It will be
+found that the ideal linear analysis
+of~\cite{mikhailovskiiInstabilitiesConfinedPlasma1998} is sufficient for
+understanding the flute instabilities investigated here since the associated
+flux tubes adequately fail the criterion~\eqref{eq:suydams_criterion}.
 
-While Suydam's condition gives an indication of the stability of a flux tube to a given perturbation, the linear growth rate of the ideal flute instability $\gamma$ can be found via a stability analysis analogous to that of the Rayleigh-Taylor instability (see~\citep[][]{goldstonIntroductionPlasmaPhysics2020}) and is given by
+While Suydam's condition gives an indication of the stability of a flux tube to
+a given perturbation, the linear growth rate of the ideal flute instability
+$\gamma$ can be found via a stability analysis analogous to that of the
+Rayleigh-Taylor instability
+(see~\citep[][]{goldstonIntroductionPlasmaPhysics2020}) and is given by
 \begin{equation}
   \label{eq:fluting_growth_rate}
 \gamma^2 = \frac{2|\nabla p|}{\rho R_c},
 \end{equation}
-where $R_c$ is the radius of curvature of the magnetic field. This equation only applies when the pressure gradient and radius of curvature vector are in the same direction, that is the plasma is constrained by a concave magnetic field such that the pressure forces and magnetic tension forces are in competition. In a cylindrical, twisted flux tube, the field is always concave towards the central axis of the tube, so any inwardly directed pressure gradient is potentially unstable to fluting.
+where $R_c$ is the radius of curvature of the magnetic field. This equation
+only applies when the pressure gradient and radius of curvature vector are in
+the same direction, that is the plasma is constrained by a concave magnetic
+field such that the pressure forces and magnetic tension forces are in
+competition. In a cylindrical, twisted flux tube, the field is always concave
+towards the central axis of the tube, so any inwardly directed pressure
+gradient is potentially unstable to fluting.
 
 Throughout this paper, the twisted flux tube generated by the drivers has
 a pressure profile which is approximately axisymmetric, and independent of $z$
@@ -298,11 +319,14 @@ z)$. For a twisted field of this form, the radius of curvature is given by
 \end{equation} where $\vec{b} = \vec{B}/|\vec{B}|$ is the unit vector in the
 direction of the magnetic field and $b_{\theta}$ is the component of $\vec{b}$
 in the azimuthal direction. These approximations allows the growth rate to be
-written as \begin{equation} \label{eq:fluting_growth_rate2}
-\gamma_{\text{ideal}}^2 = \frac{-2p'}{\rho R_c}. \end{equation} This
-approximation for the growth rate continues to hold while the flux tube remains
-relatively axisymmetric, that is while the kink instability remains in its
-linear phase.
+written as
+\begin{equation}
+\label{eq:fluting_growth_rate2}
+\gamma_{\text{ideal}}^2 = \frac{-2p'}{\rho R_c}.
+\end{equation}
+This approximation for the growth rate continues to hold while the flux tube
+remains relatively axisymmetric, that is while the kink instability remains in
+its linear phase.
 
 The stability criterion \eqref{eq:suydams_criterion} and the linear growth rate
 approximation \eqref{eq:fluting_growth_rate2} are useful only as a guide and
@@ -317,12 +341,9 @@ flux tube is also not in static equilibrium initially.
 \section{Mathematical formulation and numerical setup}
 \label{sec-numerical-setup}
 
-We consider the
-magnetohydrodynamic equations for the density $\rho$, plasma
-velocity $\vec{u}$, pressure $p$, magnetic field $\vec{B}$ and
-internal energy $\varepsilon$, in their non-dimensionalised
-  visco-resistive form
-
+We consider the magnetohydrodynamic equations for the density $\rho$, plasma
+velocity $\vec{u}$, pressure $p$, magnetic field $\vec{B}$ and internal energy
+$\varepsilon$, in their non-dimensionalised visco-resistive form
 \begin{subequations}
   \label{eq:MHD}
   \begin{gather}
@@ -342,35 +363,33 @@ internal energy $\varepsilon$, in their non-dimensionalised
 %\end{equation}
     \end{gather}
 \end{subequations}
-
-where $\eta$ is the non-dimensionalised resistivity,
-$\vec{\jmath} = \nabla \times \vec{B}$ is the current
-density and the terms ${Q}_{\nu} = \ten{\sigma} : \vec{\nabla}\vec{u}$
-  and ${Q}_{\eta} = \eta | \vec{\jmath} |^2$ are viscous heating and
-  Ohmic heating, respectively. The system is closed by the inclusion
-  of the equation of state for an ideal gas 
-
+where $\eta$ is the non-dimensionalised resistivity, $\vec{\jmath} = \nabla
+\times \vec{B}$ is the current density and the terms ${Q}_{\nu} = \ten{\sigma}
+: \vec{\nabla}\vec{u}$ and ${Q}_{\eta} = \eta | \vec{\jmath} |^2$ are viscous
+heating and Ohmic heating, respectively. The system is closed by the inclusion
+of the equation of state for an ideal gas 
 \begin{equation}
 \varepsilon = \frac{p}{\rho(\gamma - 1)},
 \end{equation}
 with the specific heat ratio is given by $\gamma = 5/3$.
 
-Two different models for the viscosity stress tensor $\ten{\sigma}$
-will be compared and contrasted in this study. The first model is the
-conventional isotropic (or Newtonian) viscosity stress tensor used in
-the vast majority of the existing literature, so that, 
+Two different models for the viscosity stress tensor $\ten{\sigma}$ will be
+compared and contrasted in this study. The first model is the conventional
+isotropic (or Newtonian) viscosity stress tensor used in the vast majority of
+the existing literature, so that, 
 \begin{equation}
   \label{eq:isotropic_viscous_tensor}
 \ten{\sigma = }\ten{\sigma}_{\text{iso}} = \nu \ten{W},
 \end{equation}
-where $\nu$ is the viscous transport parameter, generally referred to as the viscosity,
+where $\nu$ is the viscous transport parameter, generally referred to as the
+viscosity,
 \begin{equation}
   \label{eq:rate_of_strain}
   \ten{W} = \nabla\vec{u} + (\nabla\vec{u})^T - \tfrac{2}{3}(\nabla \cdot \vec{u})\ten{I},
 \end{equation}
-is the rate of strain tensor, and $\ten{I}$ is the  $3\times 3$
-identity tensor. The second model, which is the one of actual interest, is the anisotropic viscosity stress
-tensor given by
+is the rate of strain tensor, and $\ten{I}$ is the  $3\times 3$ identity
+tensor. The second model, which is the one of actual interest, is the
+anisotropic viscosity stress tensor given by
 \begin{equation}
   \label{eq:switching_model}
 \ten{\sigma} = \ten{\sigma}_\text{aniso} = \nu \left[\frac{3}{2}(\ten{W}\vec{b}\cdot\vec{b}) \left( \vec{b} \otimes \vec{b} - \frac{1}{3}\ten{I} \right)\right],
@@ -378,54 +397,53 @@ tensor given by
 where $\vec{b}$ is the unit vector in the direction of the magnetic
 field.
 
-Expression \eqref{eq:switching_model} is identical to the strong field approximation of the
-general anisotropic viscosity tensor derived in~\citet{braginskiiTransportProcessesPlasma1965}.
-Expressions \eqref{eq:isotropic_viscous_tensor} and \eqref{eq:switching_model} arise as asymptotic limits of the
-more general switching model used in our earlier works 
+Expression \eqref{eq:switching_model} is identical to the strong field
+approximation of the general anisotropic viscosity tensor derived
+in~\citet{braginskiiTransportProcessesPlasma1965}. Expressions
+\eqref{eq:isotropic_viscous_tensor} and \eqref{eq:switching_model} arise as
+asymptotic limits of the more general switching model used in our earlier works
 \citep{mactaggartBraginskiiMagnetohydrodynamicsArbitrary2017,quinnEffectAnisotropicViscosity2020,quinnKelvinHelmholtzInstabilityCollapse2021}
-which, includes both isotropic and anisotropic contributions and can
-switch gradually between them depending on the strength of the
-magnetic field at a given spacio-temporal location. For example, in
-the vicinity of a null point where the magnetic field becomes weak the
-isotropic viscosity contribution becomes dominant in the switching
-model. Switching between the two limit cases is not relevant in the
-present study where the variations in the magnetic field are not
-significantly large.
+which, includes both isotropic and anisotropic contributions and can switch
+gradually between them depending on the strength of the magnetic field at
+a given spacio-temporal location. For example, in the vicinity of a null point
+where the magnetic field becomes weak the isotropic viscosity contribution
+becomes dominant in the switching model. Switching between the two limit cases
+is not relevant in the present study where the variations in the magnetic field
+are not significantly large.
 
-The non-dimensionalisation of equations \eqref{eq:MHD} is identical to that used in
-our earlier works~\citep{quinnEffectAnisotropicViscosity2020,quinnKelvinHelmholtzInstabilityCollapse2021}. A typical magnetic
-field strength $B_0$, density $\rho_0$ and length scale $L_0$ are
-chosen and the other variables non-dimensionalised
-appropriately. Velocity and time are non-dimensionalised using the
-Alfv\'en speed $u_A = B_0 / \sqrt{\rho_0 \mu_0}$ and Alfv\'en crossing 
-time $t_A = L_0/u_A$, respectively. Temperature is non-dimensionalised
-via $T_0 = u_A^2 \bar{m} / k_B$, where $k_B$ is the Boltzmann constant
-and $\bar{m}$ is the average mass of ions, here taken to be $\bar{m} =
-1.2m_p$ (a mass typical for the solar corona) where $m_p$ is the
-proton mass. Dimensional quantities can be recovered by multiplying
-the non-dimensional variables by their respective reference value
-(e.g. $\vec{B}_{\dim} = B_0 \vec{B}$). The reference values used here
-are $B_0 = 5 \times 10^{-3}$ T, $L_0 = 1$ Mm and $\rho_0 = 1.67 \times
-10^{-12} \ \text{kg m}^{-3}$, giving reference values for the Alfv\'en
-speed $u_A = 3.45\ \text{Mm s}^{-1}$, Alfv\'en time $t_A =
+The non-dimensionalisation of equations \eqref{eq:MHD} is identical to that
+used in our earlier
+works~\citep{quinnEffectAnisotropicViscosity2020,quinnKelvinHelmholtzInstabilityCollapse2021}.
+A typical magnetic field strength $B_0$, density $\rho_0$ and length scale
+$L_0$ are chosen and the other variables non-dimensionalised appropriately.
+Velocity and time are non-dimensionalised using the Alfv\'en speed $u_A = B_0
+/ \sqrt{\rho_0 \mu_0}$ and Alfv\'en crossing time $t_A = L_0/u_A$,
+respectively. Temperature is non-dimensionalised via $T_0 = u_A^2 \bar{m}
+/ k_B$, where $k_B$ is the Boltzmann constant and $\bar{m}$ is the average mass
+of ions, here taken to be $\bar{m} = 1.2m_p$ (a mass typical for the solar
+corona) where $m_p$ is the proton mass. Dimensional quantities can be recovered
+by multiplying the non-dimensional variables by their respective reference
+value (e.g. $\vec{B}_{\dim} = B_0 \vec{B}$). The reference values used here are
+$B_0 = 5 \times 10^{-3}$ T, $L_0 = 1$ Mm and $\rho_0 = 1.67 \times 10^{-12}
+\ \text{kg m}^{-3}$, giving reference values for the Alfv\'en speed $u_A
+= 3.45\ \text{Mm s}^{-1}$, Alfv\'en time $t_A =
 0.29\ \text{s}$ and temperature $T_0 = 1.73 \times 10^{9}\ K$.      
 
-The following initial and boundary conditions are used to form a
-magnetic flux tube and excite instabilities by dynamic twisting. 
-The magnetic field is prescribed as initially straight and uniform,
+The following initial and boundary conditions are used to form a magnetic flux
+tube and excite instabilities by dynamic twisting. The magnetic field is
+prescribed as initially straight and uniform,
 \begin{equation}
 \vec{B} = (0, 0, 1)^{\text{T}},
 \end{equation}
-in a cube of size $[-2,2]^3$, with further test simulations run using an elongated domain of size $4\times4\times20$. Initially, the velocity is set
-everywhere to $\vec{u} = \vec{0}$, the density to $\rho = 1$,
-and the
-internal energy to $\varepsilon = 8.67\times 10^{-4}$. This corresponds
-to a typical coronal temperature of $10^6$ K and a plasma beta of $1.11 \times 10^{-4}$. At the
-boundaries, the magnetic field, velocity, density, and energy are fixed to their
-initial values and their derivatives normal to the
-boundaries are set to zero  except
-where twisting velocity ``driver'', described
-below, is prescribed.
+in a cube of size $[-2,2]^3$, with further test simulations run using an
+elongated domain of size $4\times4\times20$. Initially, the velocity is set
+everywhere to $\vec{u} = \vec{0}$, the density to $\rho = 1$, and the internal
+energy to $\varepsilon = 8.67\times 10^{-4}$. This corresponds to a typical
+coronal temperature of $10^6$ K and a plasma beta of $1.11 \times 10^{-4}$. At
+the boundaries, the magnetic field, velocity, density, and energy are fixed to
+their initial values and their derivatives normal to the boundaries are set to
+zero  except where twisting velocity ``driver'', described below, is
+prescribed.
 
 \begin{figure}
   \centering
@@ -447,55 +465,77 @@ below, is prescribed.
   \label{fig:kink_driver}
 \end{figure}
 
-The flux rope is formed by prescribing a slowly accelerating, rotating flow at the upper $z$-boundary as
+The flux rope is formed by prescribing a slowly accelerating, rotating flow at
+the upper $z$-boundary as
 \begin{equation}
   \label{eq:null_twisting_profile}
   \vec{u} = u_0 u_r(r) u_t(t) (-y, x, 0)^T,
 \end{equation}
-where $u_r(r)$ describes the radial profile of the twisting motion in terms of the radius $r^2 = x^2 + y^2$,
+where $u_r(r)$ describes the radial profile of the twisting motion in terms of
+the radius $r^2 = x^2 + y^2$,
 \begin{equation}
   \label{eq:radial_twisting_function}
   u_r(r) = u_{r0}(1 + \tanh(1 - r_d r^2)),
 \end{equation}
-where $r_d$ controls the radial extent of the driver, $u_{r0}$ is a normalising factor, and $u_t(t)$ describes the imposed acceleration of the twisting motion,
+where $r_d$ controls the radial extent of the driver, $u_{r0}$ is a normalising
+factor, and $u_t(t)$ describes the imposed acceleration of the twisting motion,
 \begin{equation}
   \label{eq:ramping_up_function}
   u_t(t) = \tanh^2(t/t_r),
 \end{equation}
-where the parameter $t_r$ controls the time taken to reach the final driver velocity $u_0$. The functions $u_r(r)$ and $u_t(t)$ are plotted in figure~\ref{fig:kink_driver}. At the lower boundary, the flow is in the opposite direction. This form of driver allows the system to be accelerated slowly enough that the production of disruptive shocks and fast waves is minimal. It is unavoidable that some waves are produced during the boundary acceleration, however these usefully provide a source of noise which eventually forms a perturbation.
+where the parameter $t_r$ controls the time taken to reach the final driver
+velocity $u_0$. The functions $u_r(r)$ and $u_t(t)$ are plotted in
+figure~\ref{fig:kink_driver}. At the lower boundary, the flow is in the
+opposite direction. This form of driver allows the system to be accelerated
+slowly enough that the production of disruptive shocks and fast waves is
+minimal. It is unavoidable that some waves are produced during the boundary
+acceleration, however these usefully provide a source of noise which eventually
+forms a perturbation.
 
-The driver velocity is set to $u_0 = 0.15$, the normalising factor is $u_{r0} = 2.08$, and setting $r_d = 5$ corresponds to a driver constrained to $r<1$ and with a peak velocity at $r\approx 0.38$. The ramping time is set to $t_r = 2$, resulting in an acceleration from $0$ to $u_0$ over approximately $5$ Alfv\'en times. These driver parameters correspond to a peak rotational period of $T_R = 15.92$, the length of time taken for one full turn to be injected by a single driver. Both drivers result in twist being added at a rate of $2\pi$ every $7.96$ Alfv\'en times. The twist profile across the entire flux tube develops in such a way that by $t\approx 20$, it is qualitatively similar to those studied in~\citet{quinnEffectAnisotropicViscosity2020,hoodCoronalHeatingMagnetic2009,barefordShockHeatingNumerical2015} however the length of the flux tubes differs significantly. This configuration produces a $z$-directed tube of increasingly twisted magnetic field that eventually becomes unstable to both the flute instability and the helical kink instability.
+The driver velocity is set to $u_0 = 0.15$, the normalising factor is $u_{r0}
+= 2.08$, and setting $r_d = 5$ corresponds to a driver constrained to $r<1$ and
+with a peak velocity at $r\approx 0.38$. The ramping time is set to $t_r = 2$,
+resulting in an acceleration from $0$ to $u_0$ over approximately $5$ Alfv\'en
+times. These driver parameters correspond to a peak rotational period of $T_R
+= 15.92$, the length of time taken for one full turn to be injected by a single
+driver. Both drivers result in twist being added at a rate of $2\pi$ every
+$7.96$ Alfv\'en times. The twist profile across the entire flux tube develops
+in such a way that by $t\approx 20$, it is qualitatively similar to those
+studied
+in~\citet{quinnEffectAnisotropicViscosity2020,hoodCoronalHeatingMagnetic2009,barefordShockHeatingNumerical2015}
+however the length of the flux tubes differs significantly. This configuration
+produces a $z$-directed tube of increasingly twisted magnetic field that
+eventually becomes unstable to both the flute instability and the helical kink
+instability.
 
-The problem formulated above is solved numerically using the
-  staggered-grid, Lagrangian–Eulerian remap code for 3D MHD
-  simulations Lare3D of~\cite{arberStaggeredGridLagrangian2001} where
-  a  new module for anisotropic viscosity has been
-  included as detailed in~\citet{quinnKelvinHelmholtzInstabilityCollapse2021}. The resolution used in the
-current work is  $512$ grid points per dimension, comparable to the
-highest resolution kink instability studies
-of~\cite{hoodCoronalHeatingMagnetic2009} or medium resolution studies
-of~\cite{barefordShockHeatingNumerical2015}. 
+The problem formulated above is solved numerically using the staggered-grid,
+Lagrangian–Eulerian remap code for 3D MHD simulations Lare3D
+of~\cite{arberStaggeredGridLagrangian2001} where a  new module for anisotropic
+viscosity has been included as detailed
+in~\citet{quinnKelvinHelmholtzInstabilityCollapse2021}. The resolution used in
+the current work is  $512$ grid points per dimension, comparable to the highest
+resolution kink instability studies of~\cite{hoodCoronalHeatingMagnetic2009} or
+medium resolution studies of~\cite{barefordShockHeatingNumerical2015}. 
 
 \section{Results}
 \label{sec-results}
 
-We focus the attention
-on two selected pairs of  
-simulations, one pair where the background resistivity is set to
-$\eta=10^{-3}$ and another where $\eta=10^{-4}$. As
-in~\citet{quinnEffectAnisotropicViscosity2020}, only background
-resistivity is used. Each pair consists of one simulation
-using isotropic viscosity~\eqref{eq:isotropic_viscous_tensor} and
-another one using the anisotropic model~\eqref{eq:switching_model}. The
-value of viscosity is set to $\nu = 10^{-4}$ in all cases. 
-%
-The overall development of both the flute and the kink
-instabilities is broadly similar for the two values of resistivity and
-is described  initially. Similar simulations were performed with a longer flux tube of length $20$ instead of the tubes shown here with length $4$, and the results were found to be qualitatively similar. Focus is 
-then placed on the detailed description of instabilities in the
-$\eta=10^{-4}$ cases, with the aim of comparing the effects of the two
-viscosity models. Then further features of the $\eta=10^{-3}$
-cases are summarised.
+We focus the attention on two selected pairs of  simulations, one pair where
+the background resistivity is set to $\eta=10^{-3}$ and another where
+$\eta=10^{-4}$. As in~\citet{quinnEffectAnisotropicViscosity2020}, only
+background resistivity is used. Each pair consists of one simulation using
+isotropic viscosity~\eqref{eq:isotropic_viscous_tensor} and another one using
+the anisotropic model~\eqref{eq:switching_model}. The value of viscosity is set
+to $\nu = 10^{-4}$ in all cases. 
+
+The overall development of both the flute and the kink instabilities is broadly
+similar for the two values of resistivity and is described  initially. Similar
+simulations were performed with a longer flux tube of length $20$ instead of
+the tubes shown here with length $4$, and the results were found to be
+qualitatively similar. Focus is then placed on the detailed description of
+instabilities in the $\eta=10^{-4}$ cases, with the aim of comparing the
+effects of the two viscosity models. Then further features of the
+$\eta=10^{-3}$ cases are summarised.
 
 \subsection{Mechanism and
     general development of instability}
@@ -519,68 +559,59 @@ cases are summarised.
       \caption{Pressure}
       \label{fig:pressure_profiles}
     \end{subfigure}
-  \mycaption{
-  Gradients in the current density generate pressure gradients through Ohmic
-  heating.}{Axial current density (a), Ohmic heating (b) and pressure (c) as
-  functions of the radial distance from the tube axis. All plots are from
-  anisotropic cases when $t=20$ through the plane $z=0$. Note the sign of the
-  axial current density $j_z$ has been flipped for comparison and the Ohmic
-  heating is given by $Q_{\eta} = \eta j^2$. The pressure profile of an
-  additional test-case where $\eta=0$ is also shown. Line types are indicated
-  in the legend.}%
+  \mycaption{ Gradients in the current density generate pressure gradients
+  through Ohmic heating.}{Axial current density (a), Ohmic heating (b) and
+  pressure (c) as functions of the radial distance from the tube axis. All
+  plots are from anisotropic cases when $t=20$ through the plane $z=0$. Note
+  the sign of the axial current density $j_z$ has been flipped for comparison
+  and the Ohmic heating is given by $Q_{\eta} = \eta j^2$. The pressure profile
+  of an additional test-case where $\eta=0$ is also shown. Line types are
+  indicated in the legend.}
   \label{fig:pressure_and_heating}
 \end{figure*}
 
-Initially and in all cases computed, the
-twisting at the upper and lower boundaries gives rise to a pair of
-torsional Alfv\'en waves which proceed to travel along the tube
-from the upper and lower boundaries to their respective
-opposite boundaries. The interaction between these waves produces an 
-oscillating pattern in the kinetic energy with a period of
-approximately $4$ Alfv\'en times, equal to the time taken for an
-Alfv\'en wave to traverse the entire length of the domain
-as visible early in figure~\ref{fig:kink_ke-4}. 
+Initially and in all cases computed, the twisting at the upper and lower
+boundaries gives rise to a pair of torsional Alfv\'en waves which proceed to
+travel along the tube from the upper and lower boundaries to their respective
+opposite boundaries. The interaction between these waves produces an
+oscillating pattern in the kinetic energy with a period of approximately $4$
+Alfv\'en times, equal to the time taken for an Alfv\'en wave to traverse the
+entire length of the domain as visible early in figure~\ref{fig:kink_ke-4}. 
 
-As the field continues to be twisted, currents form, due to the local
-shear in the magnetic field, and heat the plasma through Ohmic
-dissipation. Due to the radial form of the driver, the magnitude of the
-current density is greatest at the axis of the tube, then decreases
-radially outwards as seen in figure~\ref{fig:current_profiles}. The orientation
-of the twisting produces a current flowing in the negative
-$z$-direction for $r\lessapprox0.5$. At $r \approx 0.5$ (corresponding
-to the radius of peak driving velocity) the current switches orientation
-and is in the positive $z$-direction in a shell where $0.5\lessapprox
-r \lessapprox 0.8$. This form of a twisted field with an inner core of
-current in one direction surrounded by a shell of
-oppositely-directed current is similar to the current configuration arising due to the field prescribed in~\citet{quinnEffectAnisotropicViscosity2020}. 
+As the field continues to be twisted, currents form, due to the local shear in
+the magnetic field, and heat the plasma through Ohmic dissipation. Due to the
+radial form of the driver, the magnitude of the current density is greatest at
+the axis of the tube, then decreases radially outwards as seen in
+figure~\ref{fig:current_profiles}. The orientation of the twisting produces
+a current flowing in the negative $z$-direction for $r\lessapprox0.5$. At $r
+\approx 0.5$ (corresponding to the radius of peak driving velocity) the current
+switches orientation and is in the positive $z$-direction in a shell where
+$0.5\lessapprox r \lessapprox 0.8$. This form of a twisted field with an inner
+core of current in one direction surrounded by a shell of oppositely-directed
+current is similar to the current configuration arising due to the field
+prescribed in~\citet{quinnEffectAnisotropicViscosity2020}. 
 
 This current profile is reflected in the radial Ohmic heating profile
-(figure~\ref{fig:kink_straight_ohmic_heating_profile}) and,
-consequently, in the radial pressure profile
-(figure~\ref{fig:pressure_profiles}). The highly pressurised core
-extends to $r\approx 0.2$--$0.4$ (depending on the value of $\eta$)
-before increasing slightly around $r\approx 0.7$. The secondary bump
-in pressure is due to the outer shell of current. The pressure
-gradient near the axis provides the outwardly directed pressure force
-which competes against the binding action of the magnetic tension
-and this provides the mechanism of
-flute instability excitation.  The magnitude
-of the pressure gradient depends strongly on the value of
-resistivity $\eta$, with lower values producing shallower 
-gradients which (as shall be seen) are more stable to the
-flute instability. Indeed, when $\eta=0$, the radial
-pressure profile is nearly flat and the tube stable to the
-flute instability.
+(figure~\ref{fig:kink_straight_ohmic_heating_profile}) and, consequently, in
+the radial pressure profile (figure~\ref{fig:pressure_profiles}). The highly
+pressurised core extends to $r\approx 0.2$--$0.4$ (depending on the value of
+$\eta$) before increasing slightly around $r\approx 0.7$. The secondary bump in
+pressure is due to the outer shell of current. The pressure gradient near the
+axis provides the outwardly directed pressure force which competes against the
+binding action of the magnetic tension and this provides the mechanism of flute
+instability excitation.  The magnitude of the pressure gradient depends
+strongly on the value of resistivity $\eta$, with lower values producing
+shallower gradients which (as shall be seen) are more stable to the flute
+instability. Indeed, when $\eta=0$, the radial pressure profile is nearly flat
+and the tube stable to the flute instability.
 
-In all cases unstable to the flute instability, it
-occurs  between $t=20$ and $t=30$. The continued driving at the boundaries eventually
-injects enough twist that the tube also becomes unstable to the kink
-instability. This initially develops linearly alongside or shortly
-after the flute instability and then erupts during the
-its  nonlinear phase, dominating the dynamics and
-disrupting the   flute instability. The onset and
-the competition of the two instabilities is strongly affected by
-the value of $\eta$ and the viscosity model used. 
+In all cases unstable to the flute instability, it occurs  between $t=20$ and
+$t=30$. The continued driving at the boundaries eventually injects enough twist
+that the tube also becomes unstable to the kink instability. This initially
+develops linearly alongside or shortly after the flute instability and then
+erupts during the its  nonlinear phase, dominating the dynamics and disrupting
+the   flute instability. The onset and the competition of the two instabilities
+is strongly affected by the value of $\eta$ and the viscosity model used. 
 
 \subsection{Instabilities at resistivity $\eta=10^{-4}$}
 
@@ -603,38 +634,32 @@ the value of $\eta$ and the viscosity model used.
       \caption{$t=30$}
       \label{fig:swi-4_pressure_15}
     \end{subfigure}
-\mycaption{Pressure profiles during the development of the
-  flute and kink instabilities.}{Shown are
-  density plots of pressure at $z=0$
-  with $\eta = 10^{-4}$ 
-  and for the anisotropic viscosity model}. Note the difference in colour scale
-  in figure~\ref{fig:swi-4_pressure_15}. The development in the
-  isotropic case is similar. 
+\mycaption{Pressure profiles during the development of the flute and kink
+instabilities.}{Shown are density plots of pressure at $z=0$ with $\eta
+= 10^{-4}$ and for the anisotropic viscosity model. Note the difference in
+colour scale in figure~\ref{fig:swi-4_pressure_15}. The development in the
+isotropic case is similar.}
 \label{fig:kink_pressure_slices-4}%
 \end{figure*}
 
-We now describe the evolution and competition of flute and
-  kink instabilities in case of resistivity $\eta=10^{-4}$.
-Figure~\ref{fig:kink_pressure_slices-4} shows the pressure profile
-of the anisotropic viscosity case 
-\eqref{eq:switching_model} at
-time moments $t=26$, $28$ and $30$ and at $z=0$. At $t=26$
-the tube becomes unstable to  flute
-instability with azimuthal wavenumber $m=4$, when the
-plasma begins to  bulge out diagonally from the
-high-pressure core as seen in figure~\ref{fig:swi-4_pressure_13}. As  
-the bulges move radially outwards into lower pressure regions they
-expand and accelerate, resulting in the entire pressure structure
-appearing taking the shape of a four-leaf clover (figure~\ref{fig:swi-4_pressure_14}). By
-$t=30$ the kink instability has disrupted the flute
-instability and is developing nonlinearly
-as evident in figure~\ref{fig:swi-4_pressure_15}. As is typical of nonlinear kink
-development, the tube continues to release its stored potential energy
-in the form of kinetic energy and heat and the contained plasma becomes highly
-mixed. In the  isotropic viscosity case
-which will not be illustrated by a separate figure, the
-flute instability is present but damped, and it is
-  quickly outcompeted by the kink instability which quickly dominates the dynamics. 
+We now describe the evolution and competition of flute and kink instabilities
+in case of resistivity $\eta=10^{-4}$. Figure~\ref{fig:kink_pressure_slices-4}
+shows the pressure profile of the anisotropic viscosity case
+\eqref{eq:switching_model} at time moments $t=26$, $28$ and $30$ and at $z=0$.
+At $t=26$ the tube becomes unstable to  flute instability with azimuthal
+wavenumber $m=4$, when the plasma begins to  bulge out diagonally from the
+high-pressure core as seen in figure~\ref{fig:swi-4_pressure_13}. As  the
+bulges move radially outwards into lower pressure regions they expand and
+accelerate, resulting in the entire pressure structure appearing taking the
+shape of a four-leaf clover (figure~\ref{fig:swi-4_pressure_14}). By $t=30$ the
+kink instability has disrupted the flute instability and is developing
+nonlinearly as evident in figure~\ref{fig:swi-4_pressure_15}. As is typical of
+nonlinear kink development, the tube continues to release its stored potential
+energy in the form of kinetic energy and heat and the contained plasma becomes
+highly mixed. In the  isotropic viscosity case which will not be illustrated by
+a separate figure, the flute instability is present but damped, and it is
+quickly outcompeted by the kink instability which quickly dominates the
+dynamics. 
 
 \begin{figure}
   \centering
@@ -649,11 +674,13 @@ flute instability is present but damped, and it is
       \caption{Anisotropic}
       \label{fig:field_line_plots_swi}
     \end{subfigure}
-\mycaption{Simultaneous development of flute and kink
-  instabilities in the isotropic and anisotropic cases
-  illustrated by field lines and pressure contours.}{Field
-  lines and contours of pressure (where $p=0.3$) are plotted at
-  $t=28$. Also shown is the velocity driver $u_r(\sqrt{x^2+y^2})$ at $z=2$. The flute instability grows in both cases, though faster in the anisotropic case. The initial stages of the kink instability can also be observed in the field lines of the isotropic case in subfigure~\ref{fig:field_line_plots_iso}.}
+\mycaption{Simultaneous development of flute and kink instabilities in the
+isotropic and anisotropic cases illustrated by field lines and pressure
+contours.}{Field lines and contours of pressure (where $p=0.3$) are plotted at
+$t=28$. Also shown is the velocity driver $u_r(\sqrt{x^2+y^2})$ at $z=2$. The
+flute instability grows in both cases, though faster in the anisotropic case.
+The initial stages of the kink instability can also be observed in the field
+lines of the isotropic case in subfigure~\ref{fig:field_line_plots_iso}.}
 \label{fig:kink_field_line_plots}%
 \end{figure}
 
@@ -687,29 +714,23 @@ fluting.
 \label{fig:kink_str8_ke-4}%
 \end{figure}
 
-Despite the flute instability appearing in the isotropic
-case (figure~\ref{fig:field_line_plots_iso}), only in the
-anisotropic case can the onset of both the
-flute and kink instabilities be seen in the kinetic
-energy profile shown in figure~\ref{fig:kink_ke_log-4}. Here, the nonlinear
-growth rates of the two instabilities are found to be $\gamma = 0.69$
-for the flute and $\lambda = 2.55$ for the kink. The
-onset times are approximately $t=27$ for the flute
-instability and $t=29.5$ for
-the kink. In the isotropic case, the growth rate of the kink, $\lambda
-= 2.97$, is larger than in the anisotropic case,
-although the onset times appear similar, and the kinetic energy
-profile shows no evidence of flute instability growth. 
+Despite the flute instability appearing in the isotropic case
+(figure~\ref{fig:field_line_plots_iso}), only in the anisotropic case can the
+onset of both the flute and kink instabilities be seen in the kinetic energy
+profile shown in figure~\ref{fig:kink_ke_log-4}. Here, the nonlinear growth
+rates of the two instabilities are found to be $\gamma = 0.69$ for the flute
+and $\lambda = 2.55$ for the kink. The onset times are approximately $t=27$ for
+the flute instability and $t=29.5$ for the kink. In the isotropic case, the
+growth rate of the kink, $\lambda = 2.97$, is larger than in the anisotropic
+case, although the onset times appear similar, and the kinetic energy profile
+shows no evidence of flute instability growth. 
 
-The faster growth of the kink compared to that measured in~
-\citet{quinnEffectAnisotropicViscosity2020} is attributed to
-the relative aspect ratios of the flux tubes. The tube prescribed in
-~\citep{quinnEffectAnisotropicViscosity2020} has an aspect
-ratio of approximately $20$ compared to the tube studied here which
-has an aspect ratio of approximately $4$. While the total twist is
-similar in both tubes (after the drivers have injected twist up to
-$t\approx20$) the small aspect ratio results in more turns per unit
-length, leading to a faster growing instability. 
+The faster growth of the kink compared to that measured in~\citet{quinnEffectAnisotropicViscosity2020} is attributed to the relative
+aspect ratios of the flux tubes. The tube prescribed in~\citep{quinnEffectAnisotropicViscosity2020} has an aspect ratio of
+approximately $20$ compared to the tube studied here which has an aspect ratio
+of approximately $4$. While the total twist is similar in both tubes (after the
+drivers have injected twist up to $t\approx20$) the small aspect ratio results
+in more turns per unit length, leading to a faster growing instability. 
 
 \begin{figure}
   \centering
@@ -724,25 +745,29 @@ length, leading to a faster growing instability.
       \caption{Linear growth rate}
       \label{fig:growth_rate_4}
     \end{subfigure}
-\mycaption{Stability and linear growth rate of the flute
-  instability.}{In panel \ref{fig:suydam_condition_4}, Suydam's stability
-  criterion \eqref{eq:suydams_criterion} and is contributing
-  terms   are plotted and in
-  panel \ref{fig:growth_rate_4} the predicted linear growth rate~\eqref{eq:fluting_growth_rate2} is plotted. Both plots are produced at $t=20$ for $\eta=10^{-4}$ and using the anisotropic model. The location of the peak linear growth rate is also shown.}
+\mycaption{Stability and linear growth rate of the flute instability.}{In panel
+\ref{fig:suydam_condition_4}, Suydam's stability criterion
+\eqref{eq:suydams_criterion} and is contributing terms   are plotted and in
+panel \ref{fig:growth_rate_4} the predicted linear growth
+rate~\eqref{eq:fluting_growth_rate2} is plotted. Both plots are produced at
+$t=20$ for $\eta=10^{-4}$ and using the anisotropic model. The location of the
+peak linear growth rate is also shown.}
 \label{fig:stability_and_growth}%
 \end{figure}
 
-Prior to the onset of either instability, the flux tube is found to be
-linearly unstable to perturbations of the
-form~\eqref{eq:kink_perturbation} at $t=20$ via Suydam's
-criterion~\eqref{eq:suydams_criterion}
-(figure~\ref{fig:suydam_condition_4}). The criterion represents a
-balance between destabilising pressure gradients and stabilising
-magnetic shear and in this case, the shear is so small and the
-pressure gradient so large that the tube is unstable over a wide range
-of radii, for $ 0.02 \lessapprox r \lessapprox 0.29$. The measure of
-linear fluting growth rate $\gamma$ is plotted as a function of $r$ at
-the same time (figure~\ref{fig:growth_rate_4}). The location of the peak growth matches nearly exactly the location of the resonant surface where the observed perturbation grows (figure~\ref{fig:swi-4_pressure_13}) and an estimate of the linear growth rate can be found by averaging $\gamma$ over $r$, giving a growth rate of $0.86$.
+Prior to the onset of either instability, the flux tube is found to be linearly
+unstable to perturbations of the form~\eqref{eq:kink_perturbation} at $t=20$
+via Suydam's criterion~\eqref{eq:suydams_criterion}
+(figure~\ref{fig:suydam_condition_4}). The criterion represents a balance
+between destabilising pressure gradients and stabilising magnetic shear and in
+this case, the shear is so small and the pressure gradient so large that the
+tube is unstable over a wide range of radii, for $ 0.02 \lessapprox
+r \lessapprox 0.29$. The measure of linear fluting growth rate $\gamma$ is
+plotted as a function of $r$ at the same time (figure~\ref{fig:growth_rate_4}).
+The location of the peak growth matches nearly exactly the location of the
+resonant surface where the observed perturbation grows
+(figure~\ref{fig:swi-4_pressure_13}) and an estimate of the linear growth rate
+can be found by averaging $\gamma$ over $r$, giving a growth rate of $0.86$.
 
 \begin{figure}
   \centering
@@ -757,34 +782,45 @@ the same time (figure~\ref{fig:growth_rate_4}). The location of the peak growth 
       \caption{Resonance function}
       \label{fig:resonant_surface_4}
     \end{subfigure}
-\mycaption{Perturbations corresponding to the flute and
-  kink instabilities and the spatial radial distribution of the
-  associated resonance function.}{Pressure and velocity perturbations
-  in $z$ (corresponding to the flute and kink
-  instabilities, respectively) and of the resonance
-  surface $m B_{\theta}(r)/r + kB_z(r)$ as a function
-  of $r$ using the observed fluting perturbation wavenumbers. All
-  plots are  snapshots at $t=26$ where $\eta=10^{-4}$ and
-  the viscosity model is anisotropic.} 
+\mycaption{Perturbations corresponding to the flute and kink instabilities and
+the spatial radial distribution of the associated resonance function.}{Pressure
+and velocity perturbations in $z$ (corresponding to the flute and kink
+instabilities, respectively) and of the resonance surface $m B_{\theta}(r)/r
++ kB_z(r)$ as a function of $r$ using the observed fluting perturbation
+wavenumbers. All plots are  snapshots at $t=26$ where $\eta=10^{-4}$ and the
+viscosity model is anisotropic.} 
 \label{fig:k_and_resonance}%
 \end{figure}
 
-The observed
-  perturbations corresponding to the flute and kink
-  instabilities at $t=26$ are shown in
-  Figure~\ref{fig:pressure_pert_4}. The fluting perturbation is
-  most easily observed in the pressure and is plotted as a function of $z$
-  following a line through the point $(r, \theta) = (0.101, 0)$. The
-  kink instability is best revealed in the $x$-velocity (a proxy for the
-  radial velocity) through the axis. Comparing the magnitudes of the
-  perturbations at this time suggests the flute
-  instability is close to transitioning to its nonlinear phase while
-  the kink instability is still very much in its linear
-  phase.
+The observed perturbations corresponding to the flute and kink instabilities at
+$t=26$ are shown in Figure~\ref{fig:pressure_pert_4}. The fluting perturbation
+is most easily observed in the pressure and is plotted as a function of $z$
+following a line through the point $(r, \theta) = (0.101, 0)$. The kink
+instability is best revealed in the $x$-velocity (a proxy for the radial
+velocity) through the axis. Comparing the magnitudes of the perturbations at
+this time suggests the flute instability is close to transitioning to its
+nonlinear phase while the kink instability is still very much in its linear
+phase.
 
-The value of $k$ for each perturbation is calculated as $k = 2\pi/\tilde{\lambda}$ where $\tilde{\lambda}$ is the wavelength of the perturbation, measured as the difference between the two peaks closest to $z=0$ (thus minimising the influence of line-tying on the measurement). This gives a value of $k_{\text{flute}}=23.61$ and $k_{\text{kink}}=4.57$ for both viscosity models. Hence, the observed most unstable fluting perturbation is that of the form~\eqref{eq:kink_perturbation} where $m=4$ and $k=23.61$ and the observed kink instability is that where $m=1$ and $k=4.57$. Using these values, it is observed that the fluting perturbation exactly resonates with the field, that is $m B_{\theta}(r)/r + kB_z(r) = 0$, at $r=0.125$ (figure~\ref{fig:resonant_surface_4}). This is precisely the predicted radius of peak linear growth (figure~\ref{fig:growth_rate_4}). At this time the perturbation is close to resonance, that is $m B_{\theta}(r)/r + kB_z(r) \approx 0$, over a range of radii from $r=0.125$ to $0.2$.
+The value of $k$ for each perturbation is calculated as $k
+= 2\pi/\tilde{\lambda}$ where $\tilde{\lambda}$ is the wavelength of the
+perturbation, measured as the difference between the two peaks closest to $z=0$
+(thus minimising the influence of line-tying on the measurement). This gives
+a value of $k_{\text{flute}}=23.61$ and $k_{\text{kink}}=4.57$ for both
+viscosity models. Hence, the observed most unstable fluting perturbation is
+that of the form~\eqref{eq:kink_perturbation} where $m=4$ and $k=23.61$ and the
+observed kink instability is that where $m=1$ and $k=4.57$. Using these values,
+it is observed that the fluting perturbation exactly resonates with the field,
+that is $m B_{\theta}(r)/r + kB_z(r) = 0$, at $r=0.125$
+(figure~\ref{fig:resonant_surface_4}). This is precisely the predicted radius
+of peak linear growth (figure~\ref{fig:growth_rate_4}). At this time the
+perturbation is close to resonance, that is $m B_{\theta}(r)/r + kB_z(r)
+\approx 0$, over a range of radii from $r=0.125$ to $0.2$.
 
-Comparing the effect of the viscous models on the perturbations, in the isotropic case, the fluting perturbation is damped, while in the anisotropic case the kink perturbation is diminished, explaining why the flute instability appears more readily in the anisotropic case (figure~\ref{fig:kink_ke-4}).
+Comparing the effect of the viscous models on the perturbations, in the
+isotropic case, the fluting perturbation is damped, while in the anisotropic
+case the kink perturbation is diminished, explaining why the flute instability
+appears more readily in the anisotropic case (figure~\ref{fig:kink_ke-4}).
 
 \subsection{Instabilities at resistivity $\eta=10^{-3}$}
 
@@ -825,32 +861,33 @@ Comparing the effect of the viscous models on the perturbations, in the isotropi
       \caption{$t=36$}
       \label{fig:swi-3_pressure_18}
     \end{subfigure}
-\mycaption{Pressure profiles at $z=0$ during the development of the flute and kink instabilities in the higher resistivity anisotropic case.}{The viscosity model is anisotropic and $\eta = 10^{-3}$. In contrast to the case of $\eta=10^{-4}$, the nonlinear development of the flute instability has time to mix the interior of the flux tube before the onset of the kink instability, the growth of which is affected by the mixed plasma.}
+\mycaption{Pressure profiles at $z=0$ during the development of the flute and
+kink instabilities in the higher resistivity anisotropic case.}{The viscosity
+model is anisotropic and $\eta = 10^{-3}$. In contrast to the case of
+$\eta=10^{-4}$, the nonlinear development of the flute instability has time to
+mix the interior of the flux tube before the onset of the kink instability, the
+growth of which is affected by the mixed plasma.}
 \label{fig:kink_pressure_slices-3}%
 \end{figure*}
 
-Figure
-  \ref{fig:kink_pressure_slices-3} shows a prolonged 
-development of the flute instability and a slow
-nonlinear development of the kink instability at the higher
-  resistivity value $\eta=10^{-3}$ in the case of anisotropic viscosity. Due to the enhanced Ohmic heating 
-at $\eta=10^{-3}$, the pressure gradient is substantially stronger
-than at $\eta=10^{-4}$ and the flute instability is
-excited much earlier. Compared to the $\eta=10^{-4}$ cases, the
-instability occurs further from the axis, at $r\approx0.16$, and the
-larger pressure gradient drives the bulges in profile further
-from the axis during the nonlinear phase
-(figure~\ref{fig:swi-3_pressure_12}). These bulges continue to extend
-outwards and mix the plasma as they develop. The kink instability can
-be observed moving the axis of the tube diagonally upwards and to the
-right in figure~\ref{fig:swi-3_pressure_15}. At this time in the
-$\eta=10^{-4}$ cases, the nonlinear development of the kink was
-at a later stage of its development (figure~\ref{fig:swi-4_pressure_15}). The development of
-the kink then proceeds slowly as it moves the axis of the tube through
-the mixed region to eventually begin the reconnection process with the
-outer region of field that is typical of the instability in this kind
-of flux tube (as was observed in
-our earlier work~\citep{quinnEffectAnisotropicViscosity2020}). 
+Figure \ref{fig:kink_pressure_slices-3} shows a prolonged development of the
+flute instability and a slow nonlinear development of the kink instability at
+the higher resistivity value $\eta=10^{-3}$ in the case of anisotropic
+viscosity. Due to the enhanced Ohmic heating at $\eta=10^{-3}$, the pressure
+gradient is substantially stronger than at $\eta=10^{-4}$ and the flute
+instability is excited much earlier. Compared to the $\eta=10^{-4}$ cases, the
+instability occurs further from the axis, at $r\approx0.16$, and the larger
+pressure gradient drives the bulges in profile further from the axis during the
+nonlinear phase (figure~\ref{fig:swi-3_pressure_12}). These bulges continue to
+extend outwards and mix the plasma as they develop. The kink instability can be
+observed moving the axis of the tube diagonally upwards and to the right in
+figure~\ref{fig:swi-3_pressure_15}. At this time in the $\eta=10^{-4}$ cases,
+the nonlinear development of the kink was at a later stage of its development
+(figure~\ref{fig:swi-4_pressure_15}). The development of the kink then proceeds
+slowly as it moves the axis of the tube through the mixed region to eventually
+begin the reconnection process with the outer region of field that is typical
+of the instability in this kind of flux tube (as was observed in our earlier
+work~\citep{quinnEffectAnisotropicViscosity2020}). 
 
 \begin{figure}
   \centering
@@ -865,21 +902,36 @@ our earlier work~\citep{quinnEffectAnisotropicViscosity2020}).
       \caption{Growth rate estimation}
       \label{fig:kink_ke_log-3}
     \end{subfigure}
-\mycaption{Kinetic energy as a function of time in the cases where $\eta=10^{-3}$.}{The results from both viscosity models are shown. The flute instability appears earlier than where $\eta=10^{-4}$ and the growth rate of the kink instability is decreased.}
+\mycaption{Kinetic energy as a function of time in the cases where
+$\eta=10^{-3}$.}{The results from both viscosity models are shown. The flute
+instability appears earlier than where $\eta=10^{-4}$ and the growth rate of
+the kink instability is decreased.}
 \label{fig:kink_str8_ke-3}%
 \end{figure}
 
-It is evident from the kinetic energy profile that the flute instability develops much earlier than in the $\eta=10^{-4}$ cases and grows at an increased rate of $\gamma = 1.06$ (figure~\ref{fig:kink_ke_log-3}). The kink instability grows at a rate of $\lambda \approx 0.15$, much slower than that observed in the $\eta=10^{-4}$ cases, and much lower than the flute instability. One key observation is that, despite the early and disruptive growth of the flute instability, the kink instability still generates the bulk of the kinetic energy (figure~\ref{fig:kink_ke-3}).
+It is evident from the kinetic energy profile that the flute instability
+develops much earlier than in the $\eta=10^{-4}$ cases and grows at an
+increased rate of $\gamma = 1.06$ (figure~\ref{fig:kink_ke_log-3}). The kink
+instability grows at a rate of $\lambda \approx 0.15$, much slower than that
+observed in the $\eta=10^{-4}$ cases, and much lower than the flute
+instability. One key observation is that, despite the early and disruptive
+growth of the flute instability, the kink instability still generates the bulk
+of the kinetic energy (figure~\ref{fig:kink_ke-3}).
 
-Due to the influence of the drivers on the kinetic energy, the fluting growth rate is difficult to estimate from the kinetic energy profile as accurately as in the $\eta=10^{-4}$ cases. Since the kink instability occurs after the development of the fluting, its growth rate is similarly difficult to gauge. Nevertheless, it is clear that the flute instability grows at a rate of the same order as that in the $\eta=10^{-4}$ cases. It is also apparent that the kink instability grows much slower in the $\eta=10^{-3}$ cases.
+Due to the influence of the drivers on the kinetic energy, the fluting growth
+rate is difficult to estimate from the kinetic energy profile as accurately as
+in the $\eta=10^{-4}$ cases. Since the kink instability occurs after the
+development of the fluting, its growth rate is similarly difficult to gauge.
+Nevertheless, it is clear that the flute instability grows at a rate of the
+same order as that in the $\eta=10^{-4}$ cases. It is also apparent that the
+kink instability grows much slower in the $\eta=10^{-3}$ cases.
 
 \begin{table}
-\caption{Quantitative differences in the observed perturbations
-  between results between different
-    resistivity values $\eta$. In all measurements the
-  anisotropic viscosity model is used except for $k_\text{kink}$ where the
-  isotropic viscosity model us used. Measurements times are listed in
-  the main text.}
+\caption{Quantitative differences in the observed perturbations between results
+between different resistivity values $\eta$. In all measurements the
+anisotropic viscosity model is used except for $k_\text{kink}$ where the
+isotropic viscosity model us used. Measurements times are listed in the main
+text.}
 \centering
 \begin{tabular}{ccc}
 &
@@ -899,120 +951,145 @@ Observed axial wave number $k_{\text{kink}}$ & 4.57 & 4.53 \\
 \label{tab:kink_fluting_params}
 \end{table}
 
-Table~\ref{tab:kink_fluting_params} summarises the quantitative
-differences between the results for the two values of the
-  resistivity $\eta$. All values are calculated from simulations using the anisotropic model with the exception of $k_{\text{kink}}$ which is measured from isotropic results due to noise in the anisotropic case (the value of $k_{\text{kink}}$ appears similar, however). The results of the isotropic cases are qualitatively similar. The radius of peak $\gamma$ is calculated at time $t=20$. The fluting wavenumber $k$ and observed $r_s$ are measured at times just prior to the nonlinear development of the flute instability, that is at $t=22$ when $\eta=10^{-3}$ and $t=26$ when $\eta = 10^{-4}$. The kink wavenumber is measured at $t=26$ in both cases. These times allow fair comparison between measurements.
+Table~\ref{tab:kink_fluting_params} summarises the quantitative differences
+between the results for the two values of the resistivity $\eta$. All values
+are calculated from simulations using the anisotropic model with the exception
+of $k_{\text{kink}}$ which is measured from isotropic results due to noise in
+the anisotropic case (the value of $k_{\text{kink}}$ appears similar, however).
+The results of the isotropic cases are qualitatively similar. The radius of
+peak $\gamma$ is calculated at time $t=20$. The fluting wavenumber $k$ and
+observed $r_s$ are measured at times just prior to the nonlinear development of
+the flute instability, that is at $t=22$ when $\eta=10^{-3}$ and $t=26$ when
+$\eta = 10^{-4}$. The kink wavenumber is measured at $t=26$ in both cases.
+These times allow fair comparison between measurements.
 
-The longitudinal wavenumber $k_{\text{kink}}$ of the observed kink perturbation remains similar in both cases since the instability is essentially governed by the twist injected by the driver which remains the same in both cases. In contrast, the longitudinal wavenumber $k_{\text{flute}}$ of the observed fluting perturbation is lower in the $\eta=10^{-3}$ cases. This is due to the different resonant surface within which the perturbation grows, the location being dictated by the peak of the linear growth rate. Note that the location of this peak again matches well the location of the observed resonant surface, as in the $\eta=10^{-4}$ cases. Similar to the $\eta=10^{-4}$ cases, the peak growth rate predicted by the linear analysis is the same order of magnitude as the observed growth rate.
+The longitudinal wavenumber $k_{\text{kink}}$ of the observed kink perturbation
+remains similar in both cases since the instability is essentially governed by
+the twist injected by the driver which remains the same in both cases. In
+contrast, the longitudinal wavenumber $k_{\text{flute}}$ of the observed
+fluting perturbation is lower in the $\eta=10^{-3}$ cases. This is due to the
+different resonant surface within which the perturbation grows, the location
+being dictated by the peak of the linear growth rate. Note that the location of
+this peak again matches well the location of the observed resonant surface, as
+in the $\eta=10^{-4}$ cases. Similar to the $\eta=10^{-4}$ cases, the peak
+growth rate predicted by the linear analysis is the same order of magnitude as
+the observed growth rate.
 
 \section{Discussion}
 \label{sec-discussion}
 
-It is
-likely that the $m=4$ azimuthal perturbation is excited due to
-influences from the boundaries in the Cartesian box, for example
-through the interaction of reflected fast waves generated in part by
-the driver. Performing a similar experiment in a cylindrical numerical
-domain, or prescribing a variety of perturbations in the Cartesian
-domain may reveal other, faster growing modes. The modes may also be
-influenced by nonlinear coupling between the $m>1$ and $m=1$ modes, as
-is found in the study of kink and flute
+It is likely that the $m=4$ azimuthal perturbation is excited due to influences
+from the boundaries in the Cartesian box, for example through the interaction
+of reflected fast waves generated in part by the driver. Performing a similar
+experiment in a cylindrical numerical domain, or prescribing a variety of
+perturbations in the Cartesian domain may reveal other, faster growing modes.
+The modes may also be influenced by nonlinear coupling between the $m>1$ and
+$m=1$ modes, as is found in the study of kink and flute
 oscillations~\citep{terradasEffectMagneticTwist2018,rudermanNonlinearGenerationFluting2017}. 
 
-As the current distribution, which develops as the flux tube is twisted, is similar to that found in the initial flux tube configuration of~\cite{quinnEffectAnisotropicViscosity2020},the question arises why the fluting instability is not observed in the latter. Although the current distribution (and thus heating and pressure distributions) in the tubes of~\cite{quinnEffectAnisotropicViscosity2020} may support the flute instability, the tube is initially perturbed with a motion close to an unstable eigenmode of the kink instability, resulting in the instability growing from $t=0$. In contrast, in the tubes studied here, such a perturbation must build from numerical noise, allowing a secondary, fluting perturbation to also build and become significant enough to observe.
+As the current distribution, which develops as the flux tube is twisted, is
+similar to that found in the initial flux tube configuration
+of~\cite{quinnEffectAnisotropicViscosity2020},the question arises why the
+fluting instability is not observed in the latter. Although the current
+distribution (and thus heating and pressure distributions) in the tubes
+of~\cite{quinnEffectAnisotropicViscosity2020} may support the flute
+instability, the tube is initially perturbed with a motion close to an unstable
+eigenmode of the kink instability, resulting in the instability growing from
+$t=0$. In contrast, in the tubes studied here, such a perturbation must build
+from numerical noise, allowing a secondary, fluting perturbation to also build
+and become significant enough to observe.
 
-Our set of numerical experiments has
-shown that the mixing as a result of the nonlinear flute
-instability appears to slow the growth of the kink instability. It seems unlikely that in
- the linear regime the perturbations of the
-flute and kink are able to directly couple, given that
-the kink instability generally presents at the axis of a flux tube and
-the flute at some resonant surface away from the
-axis. Further investigation of the nonlinear interaction between the
+Our set of numerical experiments has shown that the mixing as a result of the
+nonlinear flute instability appears to slow the growth of the kink instability.
+It seems unlikely that in the linear regime the perturbations of the flute and
+kink are able to directly couple, given that the kink instability generally
+presents at the axis of a flux tube and the flute at some resonant surface away
+from the axis. Further investigation of the nonlinear interaction between the
 two instabilities is required. 
 
-Since the main driver of the flute instability is the
-pressure gradient generated through Ohmic heating, it is prudent to
-ask if the same pressure gradient could be generated using physical
-coronal values of the resistivity, which are estimated to be
-approximately
-$\eta=10^{-8}$~\citep{craigAnisotropicViscousDissipation2009a},
-and are thus much smaller than those studied
-here. Additionally, the simulations presented here do not incorporate
-radiation or thermal conduction, two processes which would remove
-energy (and hence reduce pressure) from high-pressure regions in a coronal
-loop and thus could prevent meeting the required
-conditions for the growth of a 
-flute instability. Indeed, at $\eta=10^{-4}$ the
-flute instability was more quickly outcompeted by the kink
-instability and appeared to have little impact on the resultant
-dynamics, which mirror those of other kink instability studies, e.g.~\citep{hoodCoronalHeatingMagnetic2009}. This suggests that even
-lower values of resistivity would result in flux tubes without any
-significant flute instability, at least for this form of
-driver and mechanism of pressure generation. Regardless, coronal loops
-with strong radial pressure gradients have been
-observed~\citep{foukalTemperatureStructurePressure1975}, and such loops
-may be unstable to the flute instability. Modelling of a
-prescribed flute-unstable flux tube, as opposed to the dynamically
-stressed loop investigated here, would provide a useful comparison to
-observations, however it may be difficult to prescribe a tube which is
-not also susceptible to kinking. Linear stability analyses of this
-kind of flux tube (a dynamically created zero total axial current
-tube) focus on the kink
-instability~\citep{browningSolarCoronalHeating2003b} so do not provide
-much insight into the potential for fluting without a kink. 
+Since the main driver of the flute instability is the pressure gradient
+generated through Ohmic heating, it is prudent to ask if the same pressure
+gradient could be generated using physical coronal values of the resistivity,
+which are estimated to be approximately
+$\eta=10^{-8}$~\citep{craigAnisotropicViscousDissipation2009a}, and are thus
+much smaller than those studied here. Additionally, the simulations presented
+here do not incorporate radiation or thermal conduction, two processes which
+would remove energy (and hence reduce pressure) from high-pressure regions in
+a coronal loop and thus could prevent meeting the required conditions for the
+growth of a flute instability. Indeed, at $\eta=10^{-4}$ the flute instability
+was more quickly outcompeted by the kink instability and appeared to have
+little impact on the resultant dynamics, which mirror those of other kink
+instability studies, e.g.~\citep{hoodCoronalHeatingMagnetic2009}. This suggests
+that even lower values of resistivity would result in flux tubes without any
+significant flute instability, at least for this form of driver and mechanism
+of pressure generation. Regardless, coronal loops with strong radial pressure
+gradients have been observed~\citep{foukalTemperatureStructurePressure1975},
+and such loops may be unstable to the flute instability. Modelling of
+a prescribed flute-unstable flux tube, as opposed to the dynamically stressed
+loop investigated here, would provide a useful comparison to observations,
+however it may be difficult to prescribe a tube which is not also susceptible
+to kinking. Linear stability analyses of this kind of flux tube (a dynamically
+created zero total axial current tube) focus on the kink
+instability~\citep{browningSolarCoronalHeating2003b} so do not provide much
+insight into the potential for fluting without a kink. 
 
-While our results show that a flux tube can be unstable to
-the flute instability and yet the faster growing kink
-instability can quickly dominate when the pressure gradient is small
-enough, the opposite case is also observed. A faster growing flute instability appears to slow the growth of
-the kink instability although, importantly, it does not fully disrupt
-the development of the kink. Understanding the balance between the
-nonlinear growth rates of the two instabilities is important for prediction of whether the flute instability may be found
-at all in the real solar corona, or whether its realistic growth rate is
-too slow compared to that of the kink instability. 
+While our results show that a flux tube can be unstable to the flute
+instability and yet the faster growing kink instability can quickly dominate
+when the pressure gradient is small enough, the opposite case is also observed.
+A faster growing flute instability appears to slow the growth of the kink
+instability although, importantly, it does not fully disrupt the development of
+the kink. Understanding the balance between the nonlinear growth rates of the
+two instabilities is important for prediction of whether the flute instability
+may be found at all in the real solar corona, or whether its realistic growth
+rate is too slow compared to that of the kink instability. 
 
 \section{Conclusion}
 \label{sec-conclusions}
 
-This paper details the nonlinear development of two
-ideal instabilities, the kink and the flute instabilities,
-both of which develop naturally in the course of twisting an initially
-straight magnetic flux tube. This provides a different approach to
-that employed in the simulations performed in our earlier
-  study~\citep{quinnEffectAnisotropicViscosity2020} in that the
-instabilities are not excited by any prescribed perturbations but,
-instead, the field is dynamically driven into an unstable state and
-the perturbations provided by noise in the system. Not only is the
-kink instability excited due to the twist in the field, but nearly simultaneously a pressure-driven flute
-instability can also be excited in unstable pressure gradients
-generated by Ohmic heating. Simulations 
-were performed with two values of resistivity,
-$\eta=10^{-3}$ and $10^{-4}$, and for two forms of viscosity, isotropic and
-anisotropic. The results prove an
-initial and important first step towards
-understanding nonlinear flute instabilities in the
-solar corona.  
+This paper details the nonlinear development of two ideal instabilities, the
+kink and the flute instabilities, both of which develop naturally in the course
+of twisting an initially straight magnetic flux tube. This provides a different
+approach to that employed in the simulations performed in our earlier
+study~\citep{quinnEffectAnisotropicViscosity2020} in that the instabilities are
+not excited by any prescribed perturbations but, instead, the field is
+dynamically driven into an unstable state and the perturbations provided by
+noise in the system. Not only is the kink instability excited due to the twist
+in the field, but nearly simultaneously a pressure-driven flute instability can
+also be excited in unstable pressure gradients generated by Ohmic heating.
+Simulations were performed with two values of resistivity, $\eta=10^{-3}$ and
+$10^{-4}$, and for two forms of viscosity, isotropic and anisotropic. The
+results prove an initial and important first step towards understanding
+nonlinear flute instabilities in the solar corona.  
 
-It has been shown that the flute instability can be quickly dominated by the kink instability if the kink grows substantially faster than the flute. However, if the flute has time to develop nonlinearly, it mixes the plasma within the flux tube, generating small scale current sheets and releasing some magnetic energy. The overall effect of this mixing is to slow the growth of the kink instability. The slowed growth of the kink does not appear to significantly impact the kinetic energy released during its evolution, only the time over which it is released. 
+It has been shown that the flute instability can be quickly dominated by the
+kink instability if the kink grows substantially faster than the flute.
+However, if the flute has time to develop nonlinearly, it mixes the plasma
+within the flux tube, generating small scale current sheets and releasing some
+magnetic energy. The overall effect of this mixing is to slow the growth of the
+kink instability. The slowed growth of the kink does not appear to
+significantly impact the kinetic energy released during its evolution, only the
+time over which it is released. 
 
-The form of viscosity has been found to significantly affect the
-growth of the flute instability. Importantly, isotropic
-viscosity is found to damp the growth of the flute
-instability to the degree that it is unable to grow appreciably before
-the onset of the faster growing nonlinear kink instability. Overall,
-the anisotropic model permits greater release of
-kinetic energy. Similar to 
-\citep{quinnEffectAnisotropicViscosity2020}, isotropic viscous heating
-is found to be lower than anisotropic (switching)
-viscous heating, by approximately two orders of magnitude. 
+The form of viscosity has been found to significantly affect the growth of the
+flute instability. Importantly, isotropic viscosity is found to damp the growth
+of the flute instability to the degree that it is unable to grow appreciably
+before the onset of the faster growing nonlinear kink instability. Overall, the
+anisotropic model permits greater release of kinetic energy. Similar to
+\citep{quinnEffectAnisotropicViscosity2020}, isotropic viscous heating is found
+to be lower than anisotropic (switching) viscous heating, by approximately two
+orders of magnitude. 
 
-These numerical experiments have provided evidence that the flute instability can occur in twisted magnetic flux ropes and grow at similar rates to the kink instability. Further estimation of the relative growth rates in more realistic coronal loop setups is required to fully understand if the flute instability plays a pertinent role in coronal loop physics.
+These numerical experiments have provided evidence that the flute instability
+can occur in twisted magnetic flux ropes and grow at similar rates to the kink
+instability. Further estimation of the relative growth rates in more realistic
+coronal loop setups is required to fully understand if the flute instability
+plays a pertinent role in coronal loop physics.
 
 \section*{Acknowledgements}
 
-We would like to thank David MacTaggart for his input on the thesis chapter on which this paper is based. Results were obtained using the ARCHIE-WeSt High Performance Computer
-(\url{www.archie-west.ac.uk}) based at the University of
+We would like to thank David MacTaggart for his input on the thesis chapter on
+which this paper is based. Results were obtained using the ARCHIE-WeSt High
+Performance Computer (\url{www.archie-west.ac.uk}) based at the University of
 Strathclyde. JQ was funded via an EPSRC studentship: EPSRC DTG EP/N509668/1.
 
 \bibliographystyle{mnras}
@@ -1022,9 +1099,24 @@ Strathclyde. JQ was funded via an EPSRC studentship: EPSRC DTG EP/N509668/1.
 
 \section{Associated software}
 
-A custom version of Lare3d~\citep{arberStaggeredGridLagrangian2001} has been developed where a new module for anisotropic viscosity has been included. The version including the new module can be found at \url{https://github.com/jamiejquinn/Lare3d}, and has been archived at~\citep{keith_bennett_2020_4155546}. The version of Lare3d used in the production of the results presented here, including initial conditions, boundary conditions, control parameters and the anisotropic viscosity module, can be found in~\citet{keith_bennett_2020_4155625}. The data analysis and instructions for reproducing all results found in this report may be also found at \url{https://github.com/JamieJQuinn/coronal-fluting-instability-analysis} and has been archived~\citep{quinnJamieJQuinnCoronalflutinginstabilityanalysis2021}.
+A custom version of Lare3d~\citep{arberStaggeredGridLagrangian2001} has been
+developed where a new module for anisotropic viscosity has been included. The
+version including the new module can be found at
+\url{https://github.com/jamiejquinn/Lare3d}, and has been archived
+at~\citep{keith_bennett_2020_4155546}. The version of Lare3d used in the
+production of the results presented here, including initial conditions,
+boundary conditions, control parameters and the anisotropic viscosity module,
+can be found in~\citet{keith_bennett_2020_4155625}. The data analysis and
+instructions for reproducing all results found in this report may be also found
+at \url{https://github.com/JamieJQuinn/coronal-fluting-instability-analysis}
+and has been
+archived~\citep{quinnJamieJQuinnCoronalflutinginstabilityanalysis2021}.
 
-All simulations were performed on a single, multi-core machine with $40$ cores provided by Intel Xeon Gold 6138 Skylake processor running at $2$ GHz and $192$ GB of RAM, although this amount of RAM is much higher than was required; a conservative estimate of the memory used in the largest simulations is around $64$ GB. Most simulations completed in under $2$ days.
+All simulations were performed on a single, multi-core machine with $40$ cores
+provided by Intel Xeon Gold 6138 Skylake processor running at $2$ GHz and $192$
+GB of RAM, although this amount of RAM is much higher than was required;
+a conservative estimate of the memory used in the largest simulations is around
+$64$ GB. Most simulations completed in under $2$ days.
 
 \bsp	% typesetting comment
 \label{lastpage}
